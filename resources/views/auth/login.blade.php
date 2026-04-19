@@ -37,13 +37,7 @@
                             <label class="form-check-label" for="remember_me">Remember me</label>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            @if (Route::has('password.request'))
-                                <a class="text-decoration-none" href="{{ route('password.request') }}">
-                                    Lupa password?
-                                </a>
-                            @endif
-
+                        <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">
                                 Login
                             </button>
