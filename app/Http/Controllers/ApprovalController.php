@@ -32,7 +32,7 @@ class ApprovalController extends Controller
 
         $booking->save();
 
-        return redirect('/approvals');
+        return redirect('/approvals')->with('success', 'Approval berhasil disetujui.');
     }
 
     public function reject($id)
@@ -45,6 +45,6 @@ class ApprovalController extends Controller
         $booking->status = 'rejected';
         $booking->save();
 
-        return redirect('/approvals');
+        return redirect('/approvals')->with('success', 'Approval berhasil ditolak.');
     }
 }

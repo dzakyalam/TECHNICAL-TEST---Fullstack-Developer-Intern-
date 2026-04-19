@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Driver;
+use App\Models\Vehicle;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -24,6 +26,22 @@ class DashboardController extends Controller
             ->groupBy('status')
             ->get();
 
-        return view('dashboard.index', compact('usagePerVehicle', 'bookingStatus'));
+        $totalVehicles = Vehicle::count();
+        $totalDrivers = Driver::count();
+        $totalBookings = Booking::count();
+        $pendingBookings = Booking::where('status', 'pending')->count();
+        $approvedBookings = Booking::where('status', 'approved')->count();
+        $rejectedBookings = Booking::where('status', 'rejected')->count();
+
+        return view('dashboard.index', compact(
+            'usagePerVehicle',
+            'bookingStatus',
+            'totalVehicles',
+            'totalDrivers',
+            'totalBookings',
+            'pendingBookings',
+            'approvedBookings',
+            'rejectedBookings'
+        ));
     }
 }
